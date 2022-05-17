@@ -94,4 +94,4 @@ def next_number():
 
 	args = request.args
 
-	return 'Number {0}'.format(int(args['number']) + 1)
+	return '{0}'.format(int(args['number']) + 1)
