@@ -1,3 +1,4 @@
+from ast import arg
 from flask import Flask
 from flask import request
 from flask import Response
@@ -69,3 +70,28 @@ def update(number):
 			session.delete(joke)
 			session.commit()
 			return Response(null, 200)
+
+@app.route('/mcm')
+def mcm():
+	args = request.args
+
+	num1 = int(args['number1'])
+	num2 = int(args['number2'])
+
+	a = max(num1, num2)
+	b = min(num1, num2)
+
+	while b:
+		mcd = b
+		b = a % b
+		a = mcd
+	mcm = (num1 * num2) // mcd
+
+	return 'MCM {0}'.format(mcm)
+
+@app.route('/next')
+def next_number():
+
+	args = request.args
+
+	return 'Number {0}'.format(int(args['number']) + 1)
